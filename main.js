@@ -118,10 +118,10 @@ The main procedure of solving a separable equation will be housed in a Separable
 Tagging along the Separable class is a print function. This function gathers all the terms and adds the operators, equal signs, and the constants. Then, it returns the formatted solution to the separable equation. The formatting includes HTML tags. This function does not return nor attempts to solve the solution explicitly as all it does it regurgitate the implicit form.
 */
 
-function Separable(stream){ // dy/dx = (2x+2x^2+3x^2+) / (2y + 4y)
+function Separable(stream){ // (-2x+22x^2-x^2+x) / (2y + 4y^(-2))
   this.left = [];
   this.right = [];
-  var terms = streamSplit(stream); // stream.split(/\=|\+|\-|\s|\(|\)/gi);
+  var terms = streamSplit(stream);
   for (var i of terms){
     if (i.match("x") && !i.match("d")){
       var result = streamToTerm(i);
@@ -138,7 +138,7 @@ function Separable(stream){ // dy/dx = (2x+2x^2+3x^2+) / (2y + 4y)
       i.coefficient.reduce();
       result = result+i.print()+" + ";
     }
-    result += "c";
+    result += stream.match("y") ? "y" : "c";
     result += " = ";
     for (var i of this.right){
       i.coefficient.reduce();
