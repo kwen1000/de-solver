@@ -11,7 +11,7 @@ function streamToTerm(stream){ // stream is in form of string
   var variable = stream.match(/[a-zA-Z]/) ? stream.match(/[a-zA-Z]/)[0] : (failed += "variable", "x");
   if (failed.match("coefficient") && !failed.match("variable"))
     coefficient = new Fraction(1, 1);
-  var exponent = stream.match(/\^\(*\-*\d+/) ? parseInt(stream.match(/\^\(*\-*\d+/)[0].substr(2)) : (failed += "exponent", 1);
+  var exponent = stream.match(/\^\(*\-*\d+/) ? parseInt(stream.match(/\^\(*\-*\d+/)[0].match(/\-*\d+/)) : (failed += "exponent", 1);
   if (stream[0] == "-")
     coefficient.multiply(new Fraction(-1, 1));
   var term = new Term(coefficient, variable, exponent);
@@ -41,6 +41,8 @@ function Fraction(numerator, denominator){
   this.numerator = numerator || 0;
   this.denominator = denominator || 1;
   this.reduce = function(){
+    if (this.denominator < 0)
+      this.multiply(new Fraction(-1, -1));
     var a = this.numerator;
     var b = this.denominator;
     while (b > 0){
@@ -54,7 +56,7 @@ function Fraction(numerator, denominator){
       this.numerator *= -1;
       this.denominator *= -1;
     }
-   return this; // chaining
+    return this; // chaining
   }
   this.add = function(frac){
     this.numerator = (this.numerator * frac.denominator) + (frac.numerator * this.denominator);
