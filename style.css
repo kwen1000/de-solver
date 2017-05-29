@@ -1,20 +1,14 @@
+body {background-color: #48D1CC}
+
 input {
     box-shadow: rgba(0, 0, 0, 0.14) 0px 1px 4px 0px;
     color: rgb(115, 132, 145);
-    height: 42px;
-    text-decoration: none solid rgb(115, 132, 145);
-    vertical-align: middle;
-    white-space: nowrap;
-    width: 320px;
-    column-rule-color: rgb(115, 132, 145);
-    perspective-origin: 160px 21px;
-    transform-origin: 160px 21px;
-    caret-color: rgb(115, 132, 145);
     border: 0px solid rgb(115, 132, 145);
     border-radius: 2px 2px 2px 2px;
     font: normal normal normal normal 13px / 41px verdana;
     outline: rgb(115, 132, 145) none 0px;
     padding: 0px 42px 0px 16px;
+    width: 320px;
     transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1) 0s;
 }
 input:focus {
@@ -23,26 +17,13 @@ input:focus {
 
 .card {
     box-shadow: rgba(0, 0, 0, 0.14) 0px 1px 4px 0px;
-    box-sizing: border-box;
-    height: 44px;
-    width: 935px;
-    perspective-origin: 467.5px 22px;
-    transform-origin: 467.5px 22px;
     background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
     border-radius: 2px 2px 2px 2px;
-    font: normal normal normal normal 12px / normal verdana, arial, helvetica, sans-serif;
-    list-style: none outside none;
     margin: 0px 0px 16px;
     padding: 16px;
-}/*#DIV_1*/
+}
 
 .content {
     box-sizing: border-box;
-    height: 12px;
-    width: 903px;
-    perspective-origin: 451.5px 6px;
-    transform-origin: 451.5px 6px;
-    font: normal normal normal normal 10px / normal verdana, arial, helvetica, sans-serif;
-    list-style: none outside none;
-}/*#DIV_2*/
-
+    font: normal normal normal normal 16px / normal verdana, arial, helvetica, sans-serif;
+}
