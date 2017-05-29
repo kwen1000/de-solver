@@ -2,6 +2,7 @@
 <html>
 <head>
 <!--<meta http-equiv = "refresh" content = "8" />-->
+<script src = "main.js"></script>
 <style>
 .equation {
     box-shadow: rgba(0, 0, 0, 0.14) 0px 1px 4px 0px;
@@ -28,6 +29,12 @@
 </style>
 </head>
 <body>
-<input type = "text" class = "equation" />
+<input type = "text" id = "equation" />
+<div id = "print"></div>
+<script>
+document.getElementById("equation").addEventListener("submit", function(){
+  document.getElementById("equation").innerHTML = new Separable(document.getElementById("equation").value).print();
+});
+</script>
 </body>
 </html>
