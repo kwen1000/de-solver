@@ -19,7 +19,7 @@ input:focus {
     box-shadow: rgba(0, 0, 0, 0.14) 0px 1px 4px 0px;
     background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
     border-radius: 2px 2px 2px 2px;
-    margin: 16px;
+    margin: 16px 0;
     padding: 16px;
 }
 
