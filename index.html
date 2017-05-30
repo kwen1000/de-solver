@@ -18,7 +18,8 @@
 <script>
 document.getElementById("math").addEventListener("submit", function(event){
   event.preventDefault();
-  document.getElementById("print").innerHTML = new Separable(document.getElementById("equation").value).print();
+  var solution = new Separable(document.getElementById("equation").value);
+  document.getElementById("print").innerHTML = solution.print()+"<br /><pre>"+solution.solution+"</pre>";
   return false;
 });
 </script>
