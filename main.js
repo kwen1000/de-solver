@@ -92,7 +92,7 @@ RegExp can be used to individually isolate the terms. This method, unlike the pr
 */
 
 function streamSplit(stream){
-  stream.replace(/\s/g, ""); // remove whitepace
+  stream = stream.replace(/\s/g, ""); // remove whitepace
   var terms = stream.match(/\-*\d*[a-zA-Z=]\^*\(*\-*\d*\)*/g); // 
   var temp = "";
   for (var i of stream){
