@@ -19,6 +19,7 @@ function streamToTerm(stream){ // stream is in form of string
 }
  
 /*
+The concept of integration is very easy on paper, and should be easy on the computer. It simply reshuffles variables or alters functions (for instance, cos[x] changes to sin[x]). The abstraction of integration is something of it's own, which due to the short nature of this project, won't be discussed.
 Integration requires the mutation of polynomials and their terms. To recap, integration simply mutates the variables by adding the exponent and then multiply the inverted exponent. To do this in the function, the coefficient is the inverted exponent. Of course, before that the exponent is incremented by one. The coefficient, being a Fraction type, will be specially multiplied by the Fraction class' multiplication operator. For the variables themselves, an additional variable will be appended to the array of like variables. For instance, an array of "x" variables that is being integrated will append another "x" variable. The amount of "x" variables in the array is then taken into account and multiplied to the constant. Note, the new variable that is being appended simply has a coefficient of 1. The "x" variable that has a coefficient is the one that is on the left side of the array, that is the first one with an index of 0.
 */
  
@@ -116,12 +117,14 @@ function formatEquation(stream){
 Considerably the most easiest of the differential equations is separable equations. Separable equations require little analysis as they are straightforward to solve assuming the variables and other parameters are correct. That is, the x-variables are at the numerator and the y-variables are at the denominator. Granted, the equations can look differently with the x variables at the left of the equation, but for a quick resolution they will be in fraction form.
 The main procedure of solving a separable equation will be housed in a Separable class. A string stream of the input will be the parameter. Next two array of terms of the left side and right side of the equation will be defined. Using the special streamSplit function from before, an array of string terms is created and then analysed for terms. If the terms have an "x" in them then they're independent terms and if the terms have a "y" in them then they're dependent terms. Once the string terms are appropriately found, they are converted to a Term object, integrated, and then pushed into the end of their respected arrays. Be mindful that this constructor automatically assumes that the string stream is written in separable equation form. Checking if it's a separable equation is done before a new Separable object is created. Otherwise, the constructor will perform invalid operations.
 Tagging along the Separable class is a print function. This function gathers all the terms and adds the operators, equal signs, and the constants. Then, it returns the formatted solution to the separable equation. The formatting includes HTML tags. This function does not return nor attempts to solve the solution explicitly as all it does it regurgitate the implicit form.
+Separable equations are easy to solve in that they're basically regular integration problems. "dy/dx = 3x^2" is both a "beginner" integration and a separable equation since it can also be "dy/dx = (3x^2)/(y^0)". As such, the Separable class also can solve regular integration problems. The only thing that needs to be done is to designate the left side of the equation as "y".
+To print a solution to the separable equation, the call with the following format: new Separable("3x^2").print(), where the "3x^2" is the input. Take the demo case: "(-2x+22x^2-x^2+x) / (2y + 4y^(-2))". When inputted, the solution yields out "y^2 + -4y^(-1) + c = x^2 + (22/3)x^3 + -(2/3)x^3 + (1/2)x^2 + C".
 */
-
 
 function Separable(stream){ // (-2x+22x^2-x^2+x) / (2y + 4y^(-2))
   this.left = [];
   this.right = [];
+  this.solution = "";
   var terms = streamSplit(stream);
   for (var i of terms){
     if (i.match("x") && !i.match("d")){
@@ -146,6 +149,7 @@ function Separable(stream){ // (-2x+22x^2-x^2+x) / (2y + 4y^(-2))
       result = result+i.print()+" + ";
     }
     result += "C";
+    this.solution = result;
     return formatEquation(result);
   }
 }
